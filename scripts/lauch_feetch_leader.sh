@@ -2,7 +2,7 @@
 # bash lauch_feetch.sh [ip] [port0] [port1] [device0]  [device1]
 if [ $# -ne 5 ]; then
     echo "Usage: $0 [ip] [port0] [port1] [device0] [device1]"
-    echo "Example: $0 192.168.1.100 8080 8081 /dev/ttyACM0 /dev/ttyACM1"
+    echo "Example: $0 127.0.0.1 8080 8081 /dev/ttyACM0 /dev/ttyACM1"
     exit 1
 fi
 
