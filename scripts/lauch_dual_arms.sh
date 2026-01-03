@@ -11,6 +11,7 @@
 # port0=${3:-8080}
 # port1=${4:-8081}
 
+
 inverse_arm=0
 inverse_calib=0
 # 是否反转操作臂 y/n
@@ -76,6 +77,9 @@ if [ ! -c $device1 ]; then
 fi
 
 SCRIPT_PATH=$(dirname "$(realpath "$0")")
+
+cd $SCRIPT_PATH/..
+
 # get python script path: $P/../teleop/follower/
 SCRIPT_PATH_L="$SCRIPT_PATH/../teleop/leader/"
 SCRIPT_PATH_F="$SCRIPT_PATH/../teleop/follower/"
