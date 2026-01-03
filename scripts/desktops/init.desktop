@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=初始化
-Exec=gnome-terminal -- bash -lc "bash /home/zjxf/Code/HumanTeleop/scripts/easy_teleop/auto_enable.sh; echo; read -p 'Press Enter to close...'"
+Exec=gnome-terminal -- bash -ic "bash /home/zjxf/Code/HumanTeleop/scripts/easy_teleop/auto_enable.sh; echo; read -p 'Press Enter to close...'"
 Terminal=false

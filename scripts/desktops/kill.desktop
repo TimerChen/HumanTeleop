@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=停止机械臂
-Exec=gnome-terminal -- bash -lc "bash /home/zjxf/Code/HumanTeleop/scripts/kill_windows.sh teleop; echo; read -p 'Press Enter to close...'"
+Exec=gnome-terminal -- bash -ic "bash /home/zjxf/Code/HumanTeleop/scripts/kill_windows.sh teleop; echo; read -p 'Press Enter to close...'"
 Terminal=false

@@ -21,10 +21,10 @@ if [ "$inverse_arm_input" == "y" ]; then
 fi
 
 # 是否反转校准 y/n
-read -p "是否反转校准 (y/n): " inverse_calib_input
-if [ "$inverse_calib_input" == "y" ]; then
-    inverse_calib=1
-fi
+# read -p "是否反转校准 (y/n): " inverse_calib_input
+# if [ "$inverse_calib_input" == "y" ]; then
+#     inverse_calib=1
+# fi
 
 # inverse_arm=${1:-0}
 # inverse_calib=${2:-0}

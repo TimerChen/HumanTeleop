@@ -1,5 +1,15 @@
 SCRIPT_PATH=$(dirname "$(realpath "$0")")/../piper_utils/
 
+# check ACMs
+ACM_INFOS=$(ls /dev/ttyACM* /dev/ttyUSB*)
+NUM_ACM=$(echo "${ACM_INFOS}" | wc -l)
+
+if [ ${NUM_ACM} -ne 2 ]; then
+    echo "❌错误: 只能连接到${NUM_ACM}个控制器，请检查控制器连接"
+    exit 1
+fi
+echo "✅成功连接到${NUM_ACM}个控制器"
+
 # check if has two can port
 CAN_INFOS=$(sudo bash ${SCRIPT_PATH}find_all_can_port.sh | grep Interface)
 NUM_CAN=$(echo "${CAN_INFOS}" | wc -l)

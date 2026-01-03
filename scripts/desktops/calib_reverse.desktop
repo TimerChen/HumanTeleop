@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=校准操作器（反转关节）
+Exec=gnome-terminal -- bash -ic "bash /home/zjxf/Code/HumanTeleop/scripts/easy_teleop/calib_reverse.sh; echo; read -p 'Press Enter to close...'"
+Terminal=false

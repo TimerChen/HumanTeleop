@@ -21,4 +21,4 @@ for w in $windows; do
 done
 
 sleep 1
-# tmux kill-session -t "$SESSION"
+tmux kill-session -t "$SESSION"
