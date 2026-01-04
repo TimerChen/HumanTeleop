@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=启动机械臂(右侧使用小控制器)
+Exec=gnome-terminal -- bash -ic "bash /home/zjxf/Code/HumanTeleop/scripts/lauch_dual_arms.sh 1; echo; read -p 'Press Enter to close...'"
+Terminal=false

@@ -11,6 +11,7 @@
 # port0=${3:-8080}
 # port1=${4:-8081}
 
+use_gello=${1:-0}
 
 inverse_arm=0
 inverse_calib=0
@@ -57,22 +58,30 @@ if [ "$inverse_calib" -eq 1 ]; then
     calib1='calib0.json'
 fi
 
-left_gello=0
-
-if [ "$left_gello" -eq 1 ]; then
-    echo "left side use gello"
-    msg_model0='gello'
+if [ "$use_gello" -eq 1 ]; then
+    calib1='calib_cjx.json'
+    msg_mode1='gello'
+    device1='/dev/ttyUSB0'
 else
-    echo 123
+    echo "use feetech"
 fi
+
+# left_gello=0
+
+# if [ "$left_gello" -eq 1 ]; then
+#     echo "left side use gello"
+#     msg_model0='gello'
+# else
+#     echo 123
+# fi
 
 # check if device0 and device1 exist
 if [ ! -c $device0 ]; then
-    echo "Error: $device0 does not exist"
+    echo "❌ 控制器 $device0 未连接"
     exit 1
 fi
 if [ ! -c $device1 ]; then
-    echo "Error: $device1 does not exist"
+    echo "❌ 控制器 $device1 未连接"
     exit 1
 fi
 
@@ -103,16 +112,17 @@ tmux send-keys -t teleop:1.1 "conda activate of3sp" C-m
 tmux send-keys -t teleop:1.2 "conda activate of3sp" C-m
 tmux send-keys -t teleop:1.3 "conda activate of3sp" C-m
 
-if [ "$left_gello" -eq 1 ]; then
-    tmux send-keys -t teleop:1.0 "python3 ${SCRIPT_PATH_L}send.py --device $device0 --calib calib_cjx.json --ip $ip --port $port0" C-m
-    tmux send-keys -t teleop:1.2 "python3 ${SCRIPT_PATH_F}receive_and_control.py --port $port0 --can $device_piper0 --msg-mode $msg_mode0 " C-m
+if [ "$use_gello" -eq 1 ]; then
+    tmux send-keys -t teleop:1.1 "python3 ${SCRIPT_PATH_L}send.py --device $device1 --calib calib_cjx.json --ip $ip --port $port1" C-m
+    tmux send-keys -t teleop:1.3 "python3 ${SCRIPT_PATH_F}receive_and_control.py --port $tele_port1 --can $device_piper1 --msg-mode $msg_mode1" C-m
 else
-    tmux send-keys -t teleop:1.0 "python3 ${SCRIPT_PATH_L}send_feetech.py --device $device0 --calib ${calib0} --ip $ip --port $port0" C-m
-    tmux send-keys -t teleop:1.2 "python3 ${SCRIPT_PATH_F}receive_and_control.py --port $tele_port0 --can $device_piper0 --msg-mode $msg_mode0" C-m
-fi
-
 
 tmux send-keys -t teleop:1.1 "python3 ${SCRIPT_PATH_L}send_feetech.py --device $device1 --calib ${calib1} --ip $ip --port $port1" C-m
 tmux send-keys -t teleop:1.3 "python3 ${SCRIPT_PATH_F}receive_and_control.py --port $tele_port1 --can $device_piper1 --msg-mode $msg_mode1" C-m
+
+fi
+
+tmux send-keys -t teleop:1.0 "python3 ${SCRIPT_PATH_L}send_feetech.py --device $device0 --calib ${calib0} --ip $ip --port $port0" C-m
+tmux send-keys -t teleop:1.2 "python3 ${SCRIPT_PATH_F}receive_and_control.py --port $tele_port0 --can $device_piper0 --msg-mode $msg_mode0" C-m
 
 tmux at -t teleop:1

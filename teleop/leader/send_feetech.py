@@ -110,7 +110,8 @@ def calibration(servo_ids, port="/dev/ttyACM0"):
     # check_voltage(controller, servo_ids)
 
     # Set servos to middle position
-    input("[WARNING] Please make sure all servos are in the middle position and press Enter to continue...")
+    # input("[WARNING] Please make sure all servos are in the middle position and press Enter to continue...")
+    input("[⚠️提示] 请保证遥控器处于原点位置，按回车键继续校准...")
 
     success = controller.set_middle_position()
     if success:
